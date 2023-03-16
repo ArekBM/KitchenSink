@@ -13,6 +13,7 @@ from .models import *
 def test(request):
     return render(request, "network/test.html")
 
+@csrf_exempt
 def index(request):
     posts = Post.objects.all().order_by("-id")
     p = Paginator(posts,5)
@@ -31,6 +32,7 @@ def index(request):
     })
 
 @login_required(login_url='login')
+@csrf_exempt
 def create_post(request):
     text = request.POST["text"]
     user = request.user
@@ -38,6 +40,7 @@ def create_post(request):
     p.save()
     return HttpResponseRedirect(reverse("index"))
 
+@csrf_exempt
 def profile(request, name):
     try:
         user = User.objects.get(username=name)
@@ -76,6 +79,7 @@ def profile(request, name):
     })
 
 @login_required(login_url="login")
+@csrf_exempt
 def following(request):
     user = request.user
 
@@ -99,6 +103,7 @@ def following(request):
 
 
 @login_required(login_url="login")
+@csrf_exempt
 def update_profile(request):
     if request.method != "POST":
         return render(request, "network/apology.html", {
@@ -189,6 +194,7 @@ def follow(request):
     
     return JsonResponse({"message": "Followed successfully."}, status=201)
 
+@csrf_exempt
 def login_view(request):
     if request.user.is_authenticated:
         return render(request, "network/apology.html", {
@@ -212,7 +218,7 @@ def login_view(request):
     else:
         return render(request, "network/login.html")
 
-
+@csrf_exempt
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("index"))
