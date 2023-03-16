@@ -31,8 +31,8 @@ def index(request):
         "liked_posts": liked_posts
     })
 
-@login_required(login_url='login')
 @csrf_exempt
+@login_required(login_url='login')
 def create_post(request):
     text = request.POST["text"]
     user = request.user
@@ -78,8 +78,8 @@ def profile(request, name):
         "message": "User Does not exist"
     })
 
-@login_required(login_url="login")
 @csrf_exempt
+@login_required(login_url="login")
 def following(request):
     user = request.user
 
@@ -101,9 +101,8 @@ def following(request):
 
     })
 
-
-@login_required(login_url="login")
 @csrf_exempt
+@login_required(login_url="login")
 def update_profile(request):
     if request.method != "POST":
         return render(request, "network/apology.html", {
