@@ -29,9 +29,15 @@ def get_time(date):
                     else:
                         return f"{mn} min"
                 else:
-                    return f"{h} hour"
+                    if h == 1:
+                        return f"{h} hour ago"
+                    else:
+                        return f"{h} hours ago"
             else:
-                return f"{d} day"
+                if d == 1:
+                    return f"{d} day ago"
+                else: 
+                    return f"{d} days ago"
         else:
             return f"{m} month"
     return date.strftime("%d/%m/%Y")
