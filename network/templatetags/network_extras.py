@@ -25,7 +25,7 @@ def get_time(date):
                     mn = n.minute - date.minute
                     if mn == 0:
                         s = n.second - date.second
-                        return f"{s} sec"
+                        return f"{s} seconds"
                     else:
                         return f"{mn} min"
                 else:

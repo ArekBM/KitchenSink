@@ -121,7 +121,7 @@ def update_profile(request):
 
 
 @csrf_exempt
-@login_required(login_url="login")
+@login_required(login_url="login") 
 def like(request):
     if request.method != "POST":
         return render(request, "network/apology.html", {
