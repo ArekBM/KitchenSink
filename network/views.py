@@ -171,7 +171,7 @@ def edit_post(request):
 def follow(request):
     if request.method != "POST":
         return render(request, "network/apology.html", {
-            "message": "Page Does not exist"
+            "message": "Page Does not exist :("
         })
     data = json.loads(request.body)
     username = data.get("username")
@@ -191,7 +191,7 @@ def follow(request):
 def login_view(request):
     if request.user.is_authenticated:
         return render(request, "network/apology.html", {
-            "message": "You are already logged in"
+            "message": "You are already logged in :)"
         })
 
     if request.method == "POST":
